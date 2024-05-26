@@ -1,2 +1,2 @@
-# remose_desktop
+# remote_desktop
 Remote Desktop Application using socket.io, webrtc, and electron
