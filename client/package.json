@@ -1,0 +1,55 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "main": "main.js",
+  "description": "electron remote control app",
+  "author": "Devpioneer",
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "dev": "nodemon --exec electron .",
+    "dist": "electron-builder"
+  },
+  "dependencies": {
+    "electron-reload": "^2.0.0-alpha.1",
+    "jquery": "^3.7.1",
+    "robotjs": "^0.6.0",
+    "socket.io-client": "^4.7.5"
+  },
+  "devDependencies": {
+    "electron": "^6.1.4",
+    "electron-builder": "^21.2.0",
+    "electron-rebuild": "^1.8.8",
+    "nodemon": "^3.1.0"
+  },
+  "build": {
+    "appId": "com.remoteapp.org",
+    "productName": "Remote Control",
+    "target": "NSIS",
+    "icon": "./buildResources/icon3.png",
+    "directories": {
+      "output": "dist",
+      "buildResources": "buildResources"
+    },
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "snap",
+        "rpm"
+      ],
+      "category": "Utility"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "category": "public.app-category.utilities",
+      "entitlements": "build/entitlements.mac.plist"
+    }
+  }
+}

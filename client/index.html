@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Screen Sharing</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    />
+    <style>
+      video::-webkit-media-controls-play-button {
+        display: none;
+      }
+      video::-webkit-media-controls-volume-slider {
+        display: none;
+      }
+      video::-webkit-media-controls-mute-button {
+        display: none;
+      }
+      video::-webkit-media-controls-timeline {
+        display: none;
+      }
+      video::-webkit-media-controls-current-time-display {
+        display: none;
+      }
+    </style>
+  </head>
+  <body style="margin: 20px">
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        align-items: center;
+      "
+    >
+      <div></div>
+      <form action="" style="display: flex; flex-direction: column; gap: 10px">
+        <label for="" style="display: flex; justify-content: space-between"
+          >User Name<input type="text" id="user-name"
+        /></label>
+        <label for="" style="display: flex; justify-content: space-between"
+          >Room Name<input type="text" id="room-name"
+        /></label>
+        <div style="display: flex; justify-content: space-around">
+          <button id="full" class="btn btn-success btn-sm">
+            <i class="fas fa-expand"></i>
+          </button>
+          <button
+            id="ban-access"
+            class="btn btn-sm btn-light"
+            style="display: none"
+          >
+            <i class="fa-solid fa-ban"></i>
+          </button>
+          <button
+            id="request-access"
+            class="btn btn-sm btn-light"
+            style="display: none"
+          >
+            <i class="fa-solid fa-code-pull-request"></i>
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary btn-sm"
+            data-toggle="modal"
+            data-target="#screenSelector"
+            id="share"
+          >
+            Share Screen
+          </button>
+          <button id="join" class="btn btn-sm btn-info">Join</button>
+        </div>
+      </form>
+      <video
+        id="local"
+        style="width: 160px; height: auto; border: 2px solid black"
+        autoplay
+      ></video>
+    </div>
+    <video
+      id="remote"
+      style="width: 100%; height: auto; border: 2px solid black"
+      autoplay
+    ></video>
+
+    <!-- The Screen Selector Modal -->
+    <div class="modal" id="screenSelector">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <!-- <div class="modal-header">
+            <h4 class="modal-title">Modal Heading</h4>
+          </div> -->
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+            <div id="modal-body" style="display: flex; gap: 10px"></div>
+          </div>
+
+          <!-- Modal footer -->
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              Close
+            </button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Request Control Modal -->
+    <div class="modal" id="requestControl">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">wants to take your PC's control</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            pls click allow or cancel
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-success btn-sm"
+                id="allow"
+                data-dismiss="modal"
+              >
+                Allow
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger btn-sm"
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <input type="hidden" id="selectedScreenID" />
+    <script>
+      window.jQuery = window.$ = require("jquery");
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="http://192.168.106.44:3000/socket.io/socket.io.js"></script>
+    <script src="./renderer.js"></script>
+
+    <script
+      src="https://kit.fontawesome.com/3a2fc1dd1a.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script> -->
+  </body>
+</html>
